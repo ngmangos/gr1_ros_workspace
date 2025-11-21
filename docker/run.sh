@@ -12,5 +12,5 @@ docker run --name isaac-sim --entrypoint bash -it --gpus all -e "ACCEPT_EULA=Y" 
   -v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw \
   -v ~/docker/isaac-sim/documents:/root/Documents:rw \
   -v /home/fourier/fourier-sim:/workspace/fourier-sim:rw \
-  -v ~/.ssh:/root/.ssh:rw \
+  -v ~/.ssh:/root/.ssh:ro \
   isaac_sim_ros2:4.2.0-Humble
