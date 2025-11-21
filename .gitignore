@@ -1,0 +1,34 @@
+# ROS 2 build system directories
+build/
+install/
+log/
+
+# Compiled files
+*.pyc
+*.pyo
+__pycache__/
+*.so
+*.o
+*.a
+
+# CMake build files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!*.cmake.in
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Package specific
+*.egg-info/
+dist/
