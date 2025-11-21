@@ -1,0 +1,4 @@
+Invoking command in '/workspace/fourier-sim/ros_ws/build/ros_fourier': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /workspace/fourier-sim/ros_ws/build/ros_fourier -- -j16 -l16
+Invoked command in '/workspace/fourier-sim/ros_ws/build/ros_fourier' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /workspace/fourier-sim/ros_ws/build/ros_fourier -- -j16 -l16
+Invoking command in '/workspace/fourier-sim/ros_ws/build/ros_fourier': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /workspace/fourier-sim/ros_ws/build/ros_fourier
+Invoked command in '/workspace/fourier-sim/ros_ws/build/ros_fourier' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /workspace/fourier-sim/ros_ws/build/ros_fourier
