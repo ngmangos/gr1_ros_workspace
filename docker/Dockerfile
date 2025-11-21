@@ -41,7 +41,8 @@ RUN rm -rf /var/lib/apt/lists/*
 
 # Install ROS2 bridge for Isaac Sim
 RUN apt-get update && apt-get install -y \
-    ros-humble-ros-ign-bridge \
+    ros-humble-ros-ign-interfaces \
+    ros-humble-ros-gz-bridge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -52,7 +53,6 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 ENV ROS_DISTRO=humble
 ENV ROS_VERSION=2
-ENV ROS_PYTHON_VERSION=3
 
 # Set up volumes for caches and data
 VOLUME ["/isaac-sim/kit/cache", "/root/.cache/ov", "/root/.cache/pip", "/root/.cache/nvidia/GLCache", "/root/.nv/ComputeCache", "/root/.nvidia-omniverse/logs", "/root/.local/share/ov/data", "/root/Documents"]
@@ -61,20 +61,36 @@ VOLUME ["/isaac-sim/kit/cache", "/root/.cache/ov", "/root/.cache/pip", "/root/.c
 SHELL ["/bin/bash", "-c"]
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
-# Setup SSH
+RUN apt-get update && apt-get install -y python3-colcon-common-extensions && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y python3-pip
+
+RUN pip3 install torch torchvision torchaudio
+
+
+# Install SSH client (choose based on your base image)
+RUN apt-get update && \
+    apt-get install -y openssh-client && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN mkdir -p ~/.ssh && \
     chmod 700 ~/.ssh && \
     touch ~/.ssh/known_hosts && \
     chmod 600 ~/.ssh/known_hosts
 
-# Configure Git
 RUN git config --global user.name "Fourier PC" && \
     git config --global user.email "blinky.unswathome@gmail.com" && \
     git config --global pull.rebase false && \
     git config --global init.defaultBranch main
 
-# Use Isaac Sim's built-in Python for additional packages
-RUN /isaac-sim/python.sh -m pip install torch torchvision torchaudio
+RUN apt-get update && apt-get install -y \
+    libssl-dev \
+    libffi-dev \
+    python3-dev \
+    python3-opencv \
+    && rm -rf /var/lib/apt/lists/*
 
 # README!: the statements below, especially the second one, should run Isaac Sim every time the container is initialized. However, it does not work.
 # Command to run Isaac Sim in headless mode
