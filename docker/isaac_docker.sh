@@ -1,3 +1,4 @@
+docker build -t isaac-container -f Dockerfile.isaac .
 xhost +local:
 docker run --name isaac-sim --entrypoint bash -it --gpus all -e "ACCEPT_EULA=Y" --rm --network=host \
     -e "PRIVACY_CONSENT=Y" \
@@ -11,4 +12,4 @@ docker run --name isaac-sim --entrypoint bash -it --gpus all -e "ACCEPT_EULA=Y" 
     -v ~/docker/isaac-sim/pkg:/isaac-sim/.local/share/ov/pkg:rw \
     -v ~/fourier-sim:/fourier-sim:rw \
     -u 0:0 \
-    nvcr.io/nvidia/isaac-sim:5.1.0
+    --name isaac-sim isaac-container

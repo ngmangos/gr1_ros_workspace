@@ -21,29 +21,26 @@ import numpy as np
 import io
 import time
 from rclpy.node import Node
-from geometry_msgs.msg import Twist, TransformStamped
+from geometry_msgs.msg import Twist
 from sensor_msgs.msg import JointState, Imu
 from message_filters import Subscriber, TimeSynchronizer
-from tf2_ros import Buffer, TransformListener
-import tf2_ros
 
 
-
-class Gr1RosController(Node):
-    """Fullbody controller for GR1 humanoid robot.
+class H1FullbodyController(Node):
+    """Fullbody controller for H1 humanoid robot.
     
     This ROS 2 node subscribes to velocity commands and synchronized joint/IMU
     data, processes the data through a neural network policy, and publishes
-    joint commands for controlling the GR1 robot's movements.
+    joint commands for controlling the H1 robot's movements.
     """
 
     def __init__(self):
-        """Initialize the gr1 ros controller node."""
-        super().__init__('gr1_ros_controller')
+        """Initialize the H1 fullbody controller node."""
+        super().__init__('h1_fullbody_controller')
 
         # Declare and set parameters
         self.declare_parameter('publish_period_ms', 5)
-        self.declare_parameter('policy_path', 'src/gr1_ros/policy/fourier.pt')
+        self.declare_parameter('policy_path', 'policy/h1_policy.pt')
         self.set_parameters(
             [rclpy.parameter.Parameter(
                 'use_sim_time', 
@@ -95,10 +92,6 @@ class Gr1RosController(Node):
         self.sync = TimeSynchronizer(subscribers, queue_size)
         self.sync.registerCallback(self._tick)
 
-        # TF2 setup for getting link transforms
-        self.tf_buffer = Buffer()
-        self.tf_listener = TransformListener(self.tf_buffer, self)
-
         # Load neural network policy
         self.policy_path = self.get_parameter('policy_path').value
         self.load_policy()
@@ -109,73 +102,50 @@ class Gr1RosController(Node):
         self._cmd_vel = Twist()
         self._imu = Imu()
         self._action_scale = 0.5  # Scale factor for policy output
-        self._previous_action = np.zeros(7)
+        self._previous_action = np.zeros(19)
         self._policy_counter = 0
-        self._decimation = 6  # Run policy every 6 ticks to reduce computation
+        self._decimation = 4  # Run policy every 4 ticks to reduce computation
         self._last_tick_time = self.get_clock().now().nanoseconds * 1e-9
         self._lin_vel_b = np.zeros(3)  # Linear velocity in body frame
         self._dt = 0.0  # Time delta between ticks
-
+        
         # Default joint positions representing the nominal stance
         self.default_pos = np.array([
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0
+            0.0, 0.0, 0.0, 0.0, 0.0,
+            0.28, 0.28, -0.28, -0.28,
+            0.0, 0.0, 0.79, 0.79,
+            0.0, 0.0, -0.52, -0.52,
+            0.52, 0.52
         ])
 
         # Joint names in the order expected by the policy
         self.joint_names = [
-            "left_shoulder_pitch_joint",
-            "left_shoulder_roll_joint",
-            "left_shoulder_yaw_joint",
-            "left_elbow_pitch_joint",
-            "left_wrist_yaw_joint",
-            "left_wrist_roll_joint",
-            "left_wrist_pitch_joint"
+            'left_hip_yaw',
+            'right_hip_yaw',
+            'torso',
+            'left_hip_roll',
+            'right_hip_roll',
+            'left_shoulder_pitch',
+            'right_shoulder_pitch',
+            'left_hip_pitch',
+            'right_hip_pitch',
+            'left_shoulder_roll',
+            'right_shoulder_roll',
+            'left_knee',
+            'right_knee',
+            'left_shoulder_yaw',
+            'right_shoulder_yaw',
+            'left_ankle',
+            'right_ankle',
+            'left_elbow',
+            'right_elbow'
         ]
 
-        self._logger.info("Initializing Gr1RosController")
+        self._logger.info("Initializing H1FullbodyController")
 
     def _cmd_vel_callback(self, msg):
         """Store the latest velocity command."""
         self._cmd_vel = msg
-
-    def _get_left_hand_transform(self):
-        """Get the transform of the left hand roll link in world frame.
-        
-        Returns:
-            tuple: (success, position, quaternion) where:
-                - success: bool indicating if transform was found
-                - position: 3D position in world frame as numpy array [x, y, z]
-                - quaternion: orientation as numpy array [w, x, y, z]
-        """
-        try:
-            # Look up transform from world frame to left hand roll link
-            transform = self.tf_buffer.lookup_transform(
-                'world',  # target frame
-                'left_hand_roll_link',  # source frame  
-                rclpy.time.Time(),
-                timeout=rclpy.duration.Duration(seconds=0.1)
-            )
-            
-            # Extract position
-            pos = transform.transform.translation
-            position = np.array([pos.x, pos.y, pos.z])
-            
-            # Extract orientation as quaternion
-            quat = transform.transform.rotation
-            quaternion = np.array([quat.w, quat.x, quat.y, quat.z])
-            
-            return True, position, quaternion
-            
-        except (tf2_ros.LookupException, tf2_ros.ConnectivityException, 
-                tf2_ros.ExtrapolationException) as e:
-            self._logger.warn(f'Could not transform from world to left_hand_roll_link: {e}')
-            return False, np.zeros(3), np.array([1.0, 0.0, 0.0, 0.0])  # Identity quaternion
 
     def _tick(self, joint_state: JointState, imu: Imu):
         """Process synchronized joint state and IMU data to generate robot commands.
@@ -232,12 +202,58 @@ class Gr1RosController(Node):
         Returns:
             np.ndarray: 69-dimensional observation vector for the policy
         """
+        # Extract quaternion orientation from IMU
+        quat_I = imu.orientation
+        quat_array = np.array([quat_I.w, quat_I.x, quat_I.y, quat_I.z])
 
-        success, left_hand_pos, left_hand_quat = self._get_left_hand_transform() 
+        # Convert quaternion to rotation matrix
+        # (transpose for body to inertial frame)
+        R_BI = self.quat_to_rot_matrix(quat_array).T
+
+        # Extract linear acceleration and integrate to estimate velocity
+        lin_acc_b = np.array([
+            imu.linear_acceleration.x,
+            imu.linear_acceleration.y,
+            imu.linear_acceleration.z
+        ])
         
-        # Joint states (7 positions + 7 velocities)
-        current_joint_pos = np.zeros(7)
-        current_joint_vel = np.zeros(7)
+        # Simple integration to estimate velocity
+        self._lin_vel_b = lin_acc_b * self._dt + self._lin_vel_b
+        
+        # Extract angular velocity
+        ang_vel_b = np.array([
+            imu.angular_velocity.x,
+            imu.angular_velocity.y,
+            imu.angular_velocity.z
+        ])
+        
+        # Calculate gravity direction in body frame
+        gravity_b = np.matmul(R_BI, np.array([0.0, 0.0, -1.0]))
+
+        # Initialize observation vector
+        obs = np.zeros(69)
+        
+        # Fill observation vector components:
+        # Base linear velocity (3)
+        obs[:3] = self._lin_vel_b
+
+        # Base angular velocity (3)
+        obs[3:6] = ang_vel_b
+
+        # Gravity direction (3)
+        obs[6:9] = gravity_b
+        
+        # Velocity commands (3)
+        cmd_vel = [
+            self._cmd_vel.linear.x,
+            self._cmd_vel.linear.y,
+            self._cmd_vel.angular.z
+        ]
+        obs[9:12] = np.array(cmd_vel)
+        
+        # Joint states (19 positions + 19 velocities)
+        current_joint_pos = np.zeros(19)
+        current_joint_vel = np.zeros(19)
 
         # Map joint states from message to our ordered arrays
         for i, name in enumerate(self.joint_names):
@@ -245,21 +261,15 @@ class Gr1RosController(Node):
                 idx = joint_state.name.index(name)
                 current_joint_pos[i] = joint_state.position[idx]
                 current_joint_vel[i] = joint_state.velocity[idx]
-        
-        obs_size = 7 + 7 + 3 + 4 + 7  # Adjust this based on your actual observation structure
-        obs = np.zeros(obs_size) 
 
         # Store joint positions relative to default pose
-        obs[:7] = current_joint_pos - self.default_pos
+        obs[12:31] = current_joint_pos - self.default_pos
         
         # Store joint velocities
-        obs[7:14] = current_joint_vel
-
-        obs[14:17] = np.array([-0.45, 0.45, 1.0541])
-        obs[17:21] = np.array([1, 0, 0, 0])
-
-        obs[21:24] = left_hand_pos
-        obs[24:] = left_hand_quat
+        obs[31:50] = current_joint_vel
+        
+        # Store previous actions
+        obs[50:69] = self._previous_action
 
         return obs
 
@@ -297,6 +307,30 @@ class Gr1RosController(Node):
             self._previous_action = self.action.copy()
         self._policy_counter += 1
 
+    def quat_to_rot_matrix(self, quat: np.ndarray) -> np.ndarray:
+        """Convert input quaternion to rotation matrix.
+
+        Args:
+            quat (np.ndarray): Input quaternion (w, x, y, z).
+
+        Returns:
+            np.ndarray: A 3x3 rotation matrix.
+        """
+        q = np.array(quat, dtype=np.float64, copy=True)
+        nq = np.dot(q, q)
+        if nq < 1e-10:
+            return np.identity(3)
+        q *= np.sqrt(2.0 / nq)
+        q = np.outer(q, q)
+        return np.array(
+            (
+                (1.0 - q[2, 2] - q[3, 3], q[1, 2] - q[3, 0], q[1, 3] + q[2, 0]),
+                (q[1, 2] + q[3, 0], 1.0 - q[1, 1] - q[3, 3], q[2, 3] - q[1, 0]),
+                (q[1, 3] - q[2, 0], q[2, 3] + q[1, 0], 1.0 - q[1, 1] - q[2, 2]),
+            ),
+            dtype=np.float64,
+        )
+
     def load_policy(self):
         """Load the neural network policy from the specified path."""
         # Load policy from file to io.BytesIO object
@@ -330,7 +364,7 @@ class Gr1RosController(Node):
 def main(args=None):
     """Main function to initialize and run the H1 fullbody controller node."""
     rclpy.init(args=args)
-    node = Gr1RosController()
+    node = H1FullbodyController()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()

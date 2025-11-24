@@ -1,0 +1,91 @@
+# Use NVIDIA CUDA base with Ubuntu 22.04
+FROM nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04
+
+USER root
+# ------------------------
+# System dependencies
+# ------------------------
+RUN apt-get update && \
+    apt-get install -y \
+    python3-pip \
+    python3-dev \
+    git \
+    wget \
+    unzip \
+    libgl1-mesa-dev \
+    libxi6 \
+    libxrender1 \
+    libxrandr2 \
+    libxinerama1 \
+    libxcursor1 \
+    libfontconfig1 \
+    sudo \
+    locales \
+    libssl-dev \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
+    libxcb-randr0 \
+    libxcb-render-util0 \
+    libxcb-xinerama0 \
+    libxkbcommon-x11-0 \
+    libdbus-1-3 \
+    libegl1 \
+    libopengl0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set locale
+RUN locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+# ------------------------
+# ROS Humble desktop (GPU base compatible)
+# ------------------------
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository universe && \
+    apt-get update && \
+    apt-get install -y ros-humble-desktop && \
+    rm -rf /var/lib/apt/lists/*
+
+# ------------------------
+# Python & PyTorch GPU
+# ------------------------
+RUN pip3 install --upgrade pip
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu122
+
+# ------------------------
+# SSH and Git config
+# ------------------------
+RUN mkdir -p /root/.ssh && \
+    chmod 700 /root/.ssh && \
+    touch /root/.ssh/known_hosts && \
+    chmod 600 /root/.ssh/known_hosts
+
+RUN git config --global user.name "Fourier PC" && \
+    git config --global user.email "blinky.unswathome@gmail.com" && \
+    git config --global pull.rebase false
+
+# ------------------------
+# Isaac Sim 5.1.0 download (NGC)
+# ------------------------
+WORKDIR /fourier-sim
+ARG NGC_API_KEY
+
+# Download and unzip Isaac Sim
+RUN wget --header="Authorization: Bearer ${NGC_API_KEY}" \
+    https://api.ngc.nvidia.com/v2/resources/nvidia/isaac/containers/versions/5.1.0/zip -O isaac-sim-5.1.0.zip && \
+    unzip isaac-sim-5.1.0.zip && \
+    rm isaac-sim-5.1.0.zip
+
+# ------------------------
+# Environment setup
+# ------------------------
+ENV PATH="/fourier-sim/isaac-sim-5.1.0:${PATH}"
+ENV LD_LIBRARY_PATH="/fourier-sim/isaac-sim-5.1.0/lib:${LD_LIBRARY_PATH}"
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=all
+
+# Default working directory
+WORKDIR /fourier-sim
