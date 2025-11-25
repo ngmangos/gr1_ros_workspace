@@ -82,6 +82,24 @@ from isaacsim.core.utils.stage import is_stage_loading
 while is_stage_loading():
     kit.update()
 print("Loading Complete")
+
+import omni.kit.commands
+
+from pxr import Gf
+
+
+success, _isaac_sensor_prim = omni.kit.commands.execute(
+    "IsaacSensorCreateImuSensor",
+    path="imu_sensor",
+    parent="/World/Robot/base_link",
+    sensor_period=1,
+    linear_acceleration_filter_size=10,
+    angular_velocity_filter_size=10,
+    orientation_filter_size=10,
+    translation = Gf.Vec3d(0, 0, 0),
+    orientation = Gf.Quatd(1, 0, 0, 0),
+)
+
 omni.timeline.get_timeline_interface().play()
 # Run in test mode, exit after a fixed number of steps
 if args.test is True:
