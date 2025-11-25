@@ -1,0 +1,36 @@
+-- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found rclpy: 7.1.6 (/opt/ros/jazzy/share/rclpy/cmake)
+-- Found geometry_msgs: 5.3.6 (/opt/ros/jazzy/share/geometry_msgs/cmake)
+-- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+-- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /fourier-sim/ros_ws/build/h1_fullbody_controller
+-- Install configuration: ""
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/scripts
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/scripts/__init__.py
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/scripts/h1_fullbody_controller.py
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/launch
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/launch/h1_fullbody_controller.launch.py
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/policy
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/policy/h1_policy.pt
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/policy/h1_env.yaml
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/lib/h1_fullbody_controller/h1_fullbody_controller.py
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/ament_index/resource_index/package_run_dependencies/h1_fullbody_controller
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/ament_index/resource_index/parent_prefix_path/h1_fullbody_controller
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/environment/ament_prefix_path.sh
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/environment/ament_prefix_path.dsv
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/environment/path.sh
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/environment/path.dsv
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/local_setup.bash
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/local_setup.sh
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/local_setup.zsh
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/local_setup.dsv
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/package.dsv
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/ament_index/resource_index/packages/h1_fullbody_controller
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/cmake/h1_fullbody_controllerConfig.cmake
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/cmake/h1_fullbody_controllerConfig-version.cmake
+-- Installing: /fourier-sim/ros_ws/install/h1_fullbody_controller/share/h1_fullbody_controller/package.xml
