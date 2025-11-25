@@ -187,955 +187,1175 @@ def PhysicsScene "physicsScene" (
     }
 }
 
-def Xform "Robot" (
-    prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Robots/FourierIntelligence/GR-1/GR1T2_fourier_hand_6dof/GR1T2_fourier_hand_6dof.usd@
-)
+def "World"
 {
-    float physxRigidBody:sleepThreshold = 0
-    quatd xformOp:orient = (0.707099974155426, 0, 0, 0.707099974155426)
-    double3 xformOp:translate = (-0.30000001192092896, 0, 0.9300000071525574)
-    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-    over "base_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+    def Xform "Robot" (
+        prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Robots/FourierIntelligence/GR-1/GR1T2_fourier_hand_6dof/GR1T2_fourier_hand_6dof.usd@
     )
     {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
+        float physxRigidBody:sleepThreshold = 0
+        quatd xformOp:orient = (0.707099974155426, 0, 0, 0.707099974155426)
+        double3 xformOp:translate = (-0.30000001192092896, 0, 0.9300000071525574)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
-    over "left_thigh_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_thigh_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_thigh_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_shank_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_foot_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_foot_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_thigh_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_thigh_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_thigh_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_shank_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_foot_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_foot_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "waist_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "waist_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "waist_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "head_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "head_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "head_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_upper_arm_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_upper_arm_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_upper_arm_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_lower_arm_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_hand_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_hand_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "left_hand_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_index_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_index_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_middle_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_middle_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_pinky_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_pinky_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_ring_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_ring_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_thumb_proximal_base_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_thumb_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "L_thumb_distal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_upper_arm_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_upper_arm_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_upper_arm_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_lower_arm_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_hand_yaw_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_hand_roll_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "right_hand_pitch_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_index_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_index_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_middle_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_middle_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_pinky_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_pinky_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_ring_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_ring_intermediate_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_thumb_proximal_base_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_thumb_proximal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "R_thumb_distal_link" (
-        prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
-    )
-    {
-        float physxContactReport:threshold = 1
-        float physxRigidBody:angularDamping = 0
-        bool physxRigidBody:disableGravity = 1
-        float physxRigidBody:linearDamping = 0
-        float physxRigidBody:maxAngularVelocity = 1000
-        float physxRigidBody:maxDepenetrationVelocity = 1
-        float physxRigidBody:maxLinearVelocity = 1000
-        bool physxRigidBody:retainAccelerations = 0
-    }
-
-    over "joints"
-    {
-        over "FixedJoint"
-        {
-            bool physxArticulation:enabledSelfCollisions = 1
-            int physxArticulation:solverPositionIterationCount = 8
-            int physxArticulation:solverVelocityIterationCount = 4
-        }
-    }
-}
-
-def Xform "PackingTable" (
-    prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Props/PackingTable/packing_table.usd@
-)
-{
-    quatd xformOp:orient = (1, 0, 0, 0)
-    double3 xformOp:scale = (1, 1, 1)
-    double3 xformOp:translate = (0, 0.550000011920929, 0)
-    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-    over "container_h20"
-    {
-        bool physics:kinematicEnabled = 1
-    }
-}
-
-def Xform "Block" (
-    prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Props/Blocks/DexCube/dex_cube_instanceable.usd@
-)
-{
-    float physics:density = 567
-    bool physics:kinematicEnabled = 0
-    bool physxRigidBody:disableGravity = 0
-    bool physxRigidBody:enableGyroscopicForces = 1
-    float physxRigidBody:maxDepenetrationVelocity = 1000
-    float physxRigidBody:sleepThreshold = 0.005
-    int physxRigidBody:solverPositionIterationCount = 8
-    int physxRigidBody:solverVelocityIterationCount = 0
-    float physxRigidBody:stabilizationThreshold = 0.0025
-    quatd xformOp:orient = (1, 0, 0, 0)
-    double3 xformOp:scale = (1, 1, 2)
-    double3 xformOp:translate = (-0.44999998807907104, 0.44999998807907104, 1.0541)
-    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-}
-
-def Xform "GroundPlane" (
-    prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Environments/Grid/default_environment.usd@
-)
-{
-    quatd xformOp:orient = (1, 0, 0, 0)
-    double3 xformOp:scale = (1, 1, 1)
-    double3 xformOp:translate = (0, 0, 0)
-    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-    def Material "physicsMaterial" (
-        prepend apiSchemas = ["PhysicsMaterialAPI", "PhysxMaterialAPI"]
-    )
-    {
-        float physics:dynamicFriction = 0.5
-        float physics:restitution = 0
-        float physics:staticFriction = 0.5
-        float physxMaterial:compliantContactDamping = 0
-        float physxMaterial:compliantContactStiffness = 0
-        uniform token physxMaterial:frictionCombineMode = "average"
-        uniform token physxMaterial:restitutionCombineMode = "average"
-    }
-
-    over "GroundPlane"
-    {
-        over "CollisionPlane" (
-            prepend apiSchemas = ["MaterialBindingAPI"]
+        over "base_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
         )
         {
-            rel material:binding:physics = </World/GroundPlane/physicsMaterial> (
-                bindMaterialAs = "strongerThanDescendants"
-            )
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
         }
-    }
 
-    over "Environment"
-    {
-        float3 xformOp:scale = (1, 1, 1)
-    }
-
-    over "Looks"
-    {
-        over "theGrid"
+        over "left_thigh_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
         {
-            over "Shader"
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_thigh_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_thigh_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_shank_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_foot_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_foot_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_thigh_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_thigh_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_thigh_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_shank_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_foot_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_foot_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "waist_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "waist_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "waist_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "head_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "head_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "head_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_upper_arm_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_upper_arm_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_upper_arm_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_lower_arm_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_hand_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_hand_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "left_hand_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_index_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_index_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_middle_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_middle_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_pinky_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_pinky_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_ring_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_ring_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_thumb_proximal_base_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_thumb_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "L_thumb_distal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_upper_arm_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_upper_arm_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_upper_arm_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_lower_arm_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_hand_yaw_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_hand_roll_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "right_hand_pitch_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_index_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_index_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_middle_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_middle_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_pinky_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_pinky_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_ring_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_ring_intermediate_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_thumb_proximal_base_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_thumb_proximal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "R_thumb_distal_link" (
+            prepend apiSchemas = ["PhysxRigidBodyAPI", "PhysxContactReportAPI"]
+        )
+        {
+            float physxContactReport:threshold = 1
+            float physxRigidBody:angularDamping = 0
+            bool physxRigidBody:disableGravity = 1
+            float physxRigidBody:linearDamping = 0
+            float physxRigidBody:maxAngularVelocity = 1000
+            float physxRigidBody:maxDepenetrationVelocity = 1
+            float physxRigidBody:maxLinearVelocity = 1000
+            bool physxRigidBody:retainAccelerations = 0
+        }
+
+        over "joints"
+        {
+            over "FixedJoint"
             {
-                color3f inputs:diffuse_tint = (0, 0, 0)
+                bool physxArticulation:enabledSelfCollisions = 1
+                int physxArticulation:solverPositionIterationCount = 8
+                int physxArticulation:solverVelocityIterationCount = 4
             }
         }
     }
 
-    over "SphereLight"
-    {
-        token visibility = "invisible"
-    }
-}
-
-def DomeLight "light"
-{
-    color3f inputs:color = (0.75, 0.75, 0.75)
-    float inputs:colorTemperature = 6500
-    bool inputs:enableColorTemperature = 0
-    float inputs:exposure = 0
-    float inputs:intensity = 3000
-    bool inputs:normalize = 0
-    asset inputs:texture:file
-    token inputs:texture:format = "automatic"
-    bool visibleInPrimaryRay = 1
-    quatd xformOp:orient = (1, 0, 0, 0)
-    double3 xformOp:scale = (1, 1, 1)
-    double3 xformOp:translate = (0, 0, 0)
-    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-}
-
-def Xform "Ground" (
-    prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Environments/Grid/default_environment.usd@
-)
-{
-    quatd xformOp:orient = (1, 0, 0, 0)
-    double3 xformOp:scale = (1, 1, 1)
-    double3 xformOp:translate = (0, 0, 0)
-    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-    def Material "physicsMaterial" (
-        prepend apiSchemas = ["PhysicsMaterialAPI", "PhysxMaterialAPI"]
+    def Xform "PackingTable" (
+        prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Props/PackingTable/packing_table.usd@
     )
     {
-        float physics:dynamicFriction = 0.5
-        float physics:restitution = 0
-        float physics:staticFriction = 0.5
-        float physxMaterial:compliantContactDamping = 0
-        float physxMaterial:compliantContactStiffness = 0
-        uniform token physxMaterial:frictionCombineMode = "average"
-        uniform token physxMaterial:restitutionCombineMode = "average"
-    }
+        quatd xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0.550000011920929, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
-    over "GroundPlane"
-    {
-        over "CollisionPlane" (
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
+        over "container_h20"
         {
-            rel material:binding:physics = </World/Ground/physicsMaterial> (
-                bindMaterialAs = "strongerThanDescendants"
-            )
+            bool physics:kinematicEnabled = 1
         }
     }
 
-    over "Environment"
+    def Xform "Cup" (
+        prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Props/Beaker/beaker_500ml.usd@
+    )
     {
-        float3 xformOp:scale = (1, 1, 1)
+        quatd xformOp:orient = (0, 0, 0, 1)
+        double3 xformOp:scale = (0.49358248710632324, 0.4471503496170044, 0.5360938310623169)
+        double3 xformOp:translate = (-0.44999998807907104, 0.44999998807907104, 1.0434000492095947)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "beaker"
+        {
+            bool physics:kinematicEnabled = 0
+            bool physxRigidBody:disableGravity = 0
+            bool physxRigidBody:enableGyroscopicForces = 1
+            float physxRigidBody:maxDepenetrationVelocity = 1000
+            float physxRigidBody:sleepThreshold = 0.005
+            int physxRigidBody:solverPositionIterationCount = 8
+            int physxRigidBody:solverVelocityIterationCount = 0
+            float physxRigidBody:stabilizationThreshold = 0.0025
+        }
     }
 
-    over "Looks"
+    def Xform "GroundPlane" (
+        prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Environments/Grid/default_environment.usd@
+    )
     {
-        over "theGrid"
+        quatd xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "physicsMaterial" (
+            prepend apiSchemas = ["PhysicsMaterialAPI", "PhysxMaterialAPI"]
+        )
         {
-            over "Shader"
+            float physics:dynamicFriction = 0.5
+            float physics:restitution = 0
+            float physics:staticFriction = 0.5
+            float physxMaterial:compliantContactDamping = 0
+            float physxMaterial:compliantContactStiffness = 0
+            uniform token physxMaterial:frictionCombineMode = "average"
+            uniform token physxMaterial:restitutionCombineMode = "average"
+        }
+
+        over "GroundPlane"
+        {
+            over "CollisionPlane" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
             {
-                color3f inputs:diffuse_tint = (0, 0, 0)
+                rel material:binding:physics = </World/GroundPlane/physicsMaterial> (
+                    bindMaterialAs = "strongerThanDescendants"
+                )
+            }
+        }
+
+        over "Environment"
+        {
+            float3 xformOp:scale = (1, 1, 1)
+        }
+
+        over "Looks"
+        {
+            over "theGrid"
+            {
+                over "Shader"
+                {
+                    color3f inputs:diffuse_tint = (0, 0, 0)
+                }
+            }
+        }
+
+        over "SphereLight"
+        {
+            token visibility = "invisible"
+        }
+    }
+
+    def DomeLight "light"
+    {
+        color3f inputs:color = (0.75, 0.75, 0.75)
+        float inputs:colorTemperature = 6500
+        bool inputs:enableColorTemperature = 0
+        float inputs:exposure = 0
+        float inputs:intensity = 3000
+        bool inputs:normalize = 0
+        asset inputs:texture:file
+        token inputs:texture:format = "automatic"
+        bool visibleInPrimaryRay = 1
+        quatd xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "Ground" (
+        prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/Environments/Grid/default_environment.usd@
+    )
+    {
+        quatd xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "physicsMaterial" (
+            prepend apiSchemas = ["PhysicsMaterialAPI", "PhysxMaterialAPI"]
+        )
+        {
+            float physics:dynamicFriction = 0.5
+            float physics:restitution = 0
+            float physics:staticFriction = 0.5
+            float physxMaterial:compliantContactDamping = 0
+            float physxMaterial:compliantContactStiffness = 0
+            uniform token physxMaterial:frictionCombineMode = "average"
+            uniform token physxMaterial:restitutionCombineMode = "average"
+        }
+
+        over "GroundPlane"
+        {
+            over "CollisionPlane" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:physics = </World/Ground/physicsMaterial> (
+                    bindMaterialAs = "strongerThanDescendants"
+                )
+            }
+        }
+
+        over "Environment"
+        {
+            float3 xformOp:scale = (1, 1, 1)
+        }
+
+        over "Looks"
+        {
+            over "theGrid"
+            {
+                over "Shader"
+                {
+                    color3f inputs:diffuse_tint = (0, 0, 0)
+                }
+            }
+        }
+
+        over "SphereLight"
+        {
+            token visibility = "invisible"
+        }
+    }
+}
+
+def "Visuals"
+{
+    def PointInstancer "ContactSensor"
+    {
+        point3f[] positions = [(-0.5287823, 0.003001161, 0.8447042)]
+        int[] protoIndices = [1]
+        prepend rel prototypes = [
+            </Visuals/ContactSensor/contact>,
+            </Visuals/ContactSensor/no_contact>,
+        ]
+
+        def Xform "contact" (
+            delete apiSchemas = ["PhysicsRigidBodyAPI", "PhysxRigidBodyAPI"]
+        )
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "geometry"
+            {
+                def Sphere "mesh" (
+                    delete apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysxCookedDataAPI:convexHull", "PhysxCookedDataAPI:convexDecomposition", "PhysxCookedDataAPI:triangleMesh", "PhysxCookedDataAPI:clothConstaint"]
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Visuals/ContactSensor/contact/geometry/material> (
+                        bindMaterialAs = "strongerThanDescendants"
+                    )
+                    bool primvars:invisibleToSecondaryRays = 1
+                    double radius = 0.02
+                    quatd xformOp:orient = (1, 0, 0, 0)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Material "material"
+                {
+                    token outputs:displacement.connect = </Visuals/ContactSensor/contact/geometry/material/Shader.outputs:displacement>
+                    token outputs:surface.connect = </Visuals/ContactSensor/contact/geometry/material/Shader.outputs:surface>
+
+                    def Shader "Shader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        float3 inputs:diffuseColor = (1, 0, 0)
+                        float3 inputs:emissiveColor = (0, 0, 0)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 1
+                        float inputs:roughness = 0.5
+                        token outputs:displacement
+                        token outputs:surface
+                    }
+                }
+            }
+        }
+
+        def Xform "no_contact" (
+            delete apiSchemas = ["PhysicsRigidBodyAPI", "PhysxRigidBodyAPI"]
+        )
+        {
+            token visibility = "invisible"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "geometry"
+            {
+                def Sphere "mesh" (
+                    delete apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysxCookedDataAPI:convexHull", "PhysxCookedDataAPI:convexDecomposition", "PhysxCookedDataAPI:triangleMesh", "PhysxCookedDataAPI:clothConstaint"]
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Visuals/ContactSensor/no_contact/geometry/material> (
+                        bindMaterialAs = "strongerThanDescendants"
+                    )
+                    bool primvars:invisibleToSecondaryRays = 1
+                    double radius = 0.02
+                    quatd xformOp:orient = (1, 0, 0, 0)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Material "material"
+                {
+                    token outputs:displacement.connect = </Visuals/ContactSensor/no_contact/geometry/material/Shader.outputs:displacement>
+                    token outputs:surface.connect = </Visuals/ContactSensor/no_contact/geometry/material/Shader.outputs:surface>
+
+                    def Shader "Shader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        float3 inputs:diffuseColor = (0, 1, 0)
+                        float3 inputs:emissiveColor = (0, 0, 0)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 1
+                        float inputs:roughness = 0.5
+                        token outputs:displacement
+                        token outputs:surface
+                    }
+                }
             }
         }
     }
 
-    over "SphereLight"
+    def PointInstancer "ContactSensor_01"
     {
-        token visibility = "invisible"
+        point3f[] positions = [(-0.5100153, -0.028500834, 0.6965244)]
+        int[] protoIndices = [1]
+        prepend rel prototypes = [
+            </Visuals/ContactSensor_01/contact>,
+            </Visuals/ContactSensor_01/no_contact>,
+        ]
+
+        def Xform "contact" (
+            delete apiSchemas = ["PhysicsRigidBodyAPI", "PhysxRigidBodyAPI"]
+        )
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "geometry"
+            {
+                def Sphere "mesh" (
+                    delete apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysxCookedDataAPI:convexHull", "PhysxCookedDataAPI:convexDecomposition", "PhysxCookedDataAPI:triangleMesh", "PhysxCookedDataAPI:clothConstaint"]
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Visuals/ContactSensor_01/contact/geometry/material> (
+                        bindMaterialAs = "strongerThanDescendants"
+                    )
+                    bool primvars:invisibleToSecondaryRays = 1
+                    double radius = 0.02
+                    quatd xformOp:orient = (1, 0, 0, 0)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Material "material"
+                {
+                    token outputs:displacement.connect = </Visuals/ContactSensor_01/contact/geometry/material/Shader.outputs:displacement>
+                    token outputs:surface.connect = </Visuals/ContactSensor_01/contact/geometry/material/Shader.outputs:surface>
+
+                    def Shader "Shader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        float3 inputs:diffuseColor = (1, 0, 0)
+                        float3 inputs:emissiveColor = (0, 0, 0)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 1
+                        float inputs:roughness = 0.5
+                        token outputs:displacement
+                        token outputs:surface
+                    }
+                }
+            }
+        }
+
+        def Xform "no_contact" (
+            delete apiSchemas = ["PhysicsRigidBodyAPI", "PhysxRigidBodyAPI"]
+        )
+        {
+            token visibility = "invisible"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "geometry"
+            {
+                def Sphere "mesh" (
+                    delete apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysxCookedDataAPI:convexHull", "PhysxCookedDataAPI:convexDecomposition", "PhysxCookedDataAPI:triangleMesh", "PhysxCookedDataAPI:clothConstaint"]
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Visuals/ContactSensor_01/no_contact/geometry/material> (
+                        bindMaterialAs = "strongerThanDescendants"
+                    )
+                    bool primvars:invisibleToSecondaryRays = 1
+                    double radius = 0.02
+                    quatd xformOp:orient = (1, 0, 0, 0)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Material "material"
+                {
+                    token outputs:displacement.connect = </Visuals/ContactSensor_01/no_contact/geometry/material/Shader.outputs:displacement>
+                    token outputs:surface.connect = </Visuals/ContactSensor_01/no_contact/geometry/material/Shader.outputs:surface>
+
+                    def Shader "Shader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        float3 inputs:diffuseColor = (0, 1, 0)
+                        float3 inputs:emissiveColor = (0, 0, 0)
+                        float inputs:metallic = 0
+                        float inputs:opacity = 1
+                        float inputs:roughness = 0.5
+                        token outputs:displacement
+                        token outputs:surface
+                    }
+                }
+            }
+        }
     }
 }
+

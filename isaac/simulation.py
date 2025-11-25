@@ -15,6 +15,7 @@
 
 import argparse
 import sys
+
 from isaacsim import SimulationApp
 
 # This sample loads a usd stage and starts simulation
@@ -31,10 +32,6 @@ args, unknown = parser.parse_known_args()
 CONFIG["headless"] = args.headless
 kit = SimulationApp(launch_config=CONFIG)
 
-# from isaacsim.core.utils import extensions
-
-# extensions.enable_extension("omni.physx.bundle")
-# extensions.enable_extension("omni.usdphysics.ui")
 import carb
 import omni
 
@@ -46,8 +43,7 @@ if assets_root_path is None:
     carb.log_error("Could not find Isaac Sim assets folder")
     kit.close()
     sys.exit()
-# usd_path = "/fourier-sim/ros_ws/isaac/assets/gr1_scene.usda"
-usd_path = "/fourier-sim/ros_ws/isaac/assets/n_envs_gr1_scene.usda"
+usd_path = "/fourier-sim/ros_ws/isaac/assets/gr1_scene.usda"
 
 # make sure the file exists before we try to open it
 try:
@@ -67,27 +63,25 @@ else:
 kit.update()
 kit.update()
 
+from isaacsim.core.utils import extensions
+
+
+# extensions.enable_extension("isaacsim.ros2.bridge")
+
+extensions.enable_extension("omni.graph.core")
+extensions.enable_extension("omni.graph.action")
+extensions.enable_extension("omni.graph.ui")
+extensions.enable_extension("omni.graph.tools")
+
+extensions.enable_extension("omni.physx.bundle")
+extensions.enable_extension("omni.usdphysics.ui")
+
 print("Loading stage...")
 from isaacsim.core.utils.stage import is_stage_loading
 
 while is_stage_loading():
     kit.update()
 print("Loading Complete")
-
-from pxr import Usd
-# stage = omni.usd.get_context().get_stage()
-
-# def disable_instanceable(prim):
-#     if prim.IsInstanceable():
-#         prim.SetInstanceable(False)
-#     # Recursively process children
-#     for child in prim.GetChildren():
-#         disable_instanceable(child)
-
-# # Apply to all roots and their children
-# for root_prim in stage.GetPseudoRoot().GetChildren():
-#     disable_instanceable(root_prim)
-
 omni.timeline.get_timeline_interface().play()
 # Run in test mode, exit after a fixed number of steps
 if args.test is True:
