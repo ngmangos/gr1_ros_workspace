@@ -32,6 +32,15 @@ args, unknown = parser.parse_known_args()
 CONFIG["headless"] = args.headless
 kit = SimulationApp(launch_config=CONFIG)
 
+from isaacsim.core.utils.extensions import enable_extension
+
+enable_extension("omni.graph.core")
+enable_extension("omni.graph.action")
+enable_extension("omni.graph.ui")
+enable_extension("omni.graph.tools")
+
+import omni.graph.core as og
+
 import carb
 import omni
 
@@ -63,18 +72,8 @@ else:
 kit.update()
 kit.update()
 
-from isaacsim.core.utils import extensions
-
-
-# extensions.enable_extension("isaacsim.ros2.bridge")
-
-extensions.enable_extension("omni.graph.core")
-extensions.enable_extension("omni.graph.action")
-extensions.enable_extension("omni.graph.ui")
-extensions.enable_extension("omni.graph.tools")
-
-extensions.enable_extension("omni.physx.bundle")
-extensions.enable_extension("omni.usdphysics.ui")
+enable_extension("omni.physx.bundle")
+enable_extension("omni.usdphysics.ui")
 
 print("Loading stage...")
 from isaacsim.core.utils.stage import is_stage_loading
@@ -87,8 +86,7 @@ import omni.kit.commands
 
 from pxr import Gf
 
-
-success, _isaac_sensor_prim = omni.kit.commands.execute(
+success, base_link_imu_prim = omni.kit.commands.execute(
     "IsaacSensorCreateImuSensor",
     path="imu_sensor",
     parent="/World/Robot/base_link",
@@ -101,6 +99,7 @@ success, _isaac_sensor_prim = omni.kit.commands.execute(
 )
 
 omni.timeline.get_timeline_interface().play()
+
 # Run in test mode, exit after a fixed number of steps
 if args.test is True:
     for i in range(10):

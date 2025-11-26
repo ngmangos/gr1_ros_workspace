@@ -67,6 +67,3 @@ RUN git config --global user.name "Fourier PC" && \
 
 # Set working directory
 WORKDIR /fourier-sim
-
-# Switch back to the original user if needed (usually 'isaac-sim' or 'omniverse')
-# USER isaac-sim
